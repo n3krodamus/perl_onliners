@@ -1,0 +1,17 @@
+Modifica el ouptut record separator
+perl -l\011e 'print "a"; print "b"; print"c"' 
+
+Imprime solo la linea 29
+cat prueba.txt | perl -ne 'print if $.==29'
+
+Imrpime la linea 29 y habilita el split (como awk) el -l agrega un \n al final
+cat prueba.txt | perl -lane 'print $F[2] if $.==29' 
+
+Cambia el list separator al caracter "+"
+echo "Esta es una prueba" | perl -lane '$"="+"; print "@F"' 
+
+Cambiar la extension de los archivos en el directorio, usando regexp
+ls -1 | perl -lne '$a=$_; s/\.txt/\.bck/; print "$_ $a"' 
+
+Lo mismo diferente pero mas simple
+ls -1 | perl -F'\.' -lane  'print "$F[0].txt $F[0].bck"'
