@@ -15,3 +15,22 @@ ls -1 | perl -lne '$a=$_; s/\.txt/\.bck/; print "$_ $a"'
 
 Lo mismo diferente pero mas simple
 ls -1 | perl -F'\.' -lane  'print "$F[0].txt $F[0].bck"'
+
+Modificar el contenido creando un backup, reemplaza pepe por tata en los archivos file.*
+perl -pi'.bck' -e 's/pepe/tata/g' file.*
+
+Imprime solo las lineas repetidas, se almacenan en el %a y se imprimen a medida que son mayores a 0
+perl -ne 'print if $a{$_}++' file
+
+Forma rapida de calcular fechas usando la funcion mktime del modulo POSIX
+perl -MPOSIX -le '@now=localtime; $now[3]-=1299; print scalar localtime mktime @now'
+
+Calcular cuantos bytes en total ocupan los archivos de la mascara
+ls -l *tmp | perl -lane '$sum+=$F[6]; END{print $sum}'
+
+Calcula cuantas palabras hay en cada linea
+cat prueba| perl -lane 'print "$. " . scalar @F'
+
+GMTIME y LOCALTIME
+perl -e 'print join ":", (gmtime)[2,1,0]'
+perl -e 'print join ":", (localtime)[2,1,0]'
