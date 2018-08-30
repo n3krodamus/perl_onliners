@@ -34,3 +34,6 @@ cat prueba| perl -lane 'print "$. " . scalar @F'
 GMTIME y LOCALTIME
 perl -e 'print join ":", (gmtime)[2,1,0]'
 perl -e 'print join ":", (localtime)[2,1,0]'
+
+Hacer un stat de varios files
+perl -e'printf "%s:%s,%s,%04o\n",$_, (stat)[4,5,2] for @ARGV' me*
